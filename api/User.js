@@ -16,7 +16,7 @@ const bcrypt = require('bcrypt');
 
 
 
-//reset password mail
+//reset password Mail
 const sendResetPasswordMail = async (name, email, token) => {
     console.log(name,email,token)
     try {
