@@ -17,9 +17,13 @@ const Postschema=new Schema({
         type:Array,
         default:[]
     },
-    comment:{
-        type:String,
-        default:""
+    commentuser:{
+        type:Array,
+        default:[]
+    },
+    commentmsg:{
+        type:Array,
+        default:[]
     }
     
 });

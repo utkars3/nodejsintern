@@ -12,7 +12,7 @@ const user = require('./../models/User')
 //password handler
 const bcrypt = require('bcrypt');
 
-
+var jwt = require('jsonwebtoken');
 
 
 
@@ -154,14 +154,21 @@ router.post('/signin', (req, res) => {
             .then(data => {
                 if (data.length) {
                     //user exists
-                    const hashedPassword = data[0].password
+                    // console.log(data);
+                    const hashedPassword = data[0].password;
                     bcrypt.compare(password, hashedPassword).then(result => {
                         if (result) {
                             //pass match
+                            const id=data[0]["_id"].valueOf()
+                            var authtoken = jwt.sign(id, 'shhhhh');
+                            
+                            // console.log(decoded.username)
                             res.json({
                                 status: "SUCCESS",
+                                authtoken:authtoken,
                                 message: "Signin successful",
                                 data: data
+                                
                             })
                         } else {
                             res.json({

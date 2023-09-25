@@ -2,6 +2,8 @@ const router=require('express').Router();
 // const { findById } = require('../models/User.js');
 const Post=require('./../models/Post.js')
 
+
+
 //create a post
 router.post("/",async (req,res)=>{
     const newPost=new Post(req.body);
@@ -96,7 +98,8 @@ router.put("/:id/comment",async (req,res)=>{
     
     try {
         
-            await post.updateOne({$set:{comment:req.body.comment}})
+            await post.updateOne({$push:{commentuser:req.body.userId}})
+            await post.updateOne({$push:{commentmsg:req.body.comment}})
             res.status(200).json("Commented")
 
         
